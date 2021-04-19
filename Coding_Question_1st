@@ -1,0 +1,44 @@
+#Change the variable name according to the given Question
+
+print('Input X:')
+x=list(map(int,input().split()))
+print('Input Y:')
+y=list(map(int,input().split()))
+a=sum(x)
+b=sum(y)
+x.sort()
+y.sort()
+diff=(max(a,b)-min(a,b))/2
+i=0
+j=0
+ans=[]
+for i in range(len(x)):
+    for j in range(len(y)):
+        temp=x[i]-y[j]
+        if temp==diff:
+            ans.append([x[i],y[j]])
+even=[]
+odd=[]
+for i in range(len(ans)):
+    temp=ans[i][0]*ans[i][1]
+    if temp%2==0:
+        even.append([temp,i])
+    else:
+        odd.append([temp,i])
+even.sort()
+odd.sort(reverse=True)
+res=[]
+for i in even:
+    x=i[1]
+    res.append(ans[x][0])
+    res.append(ans[x][1])
+for i in odd:
+    x=i[1]
+    res.append(ans[x][0])
+    res.append(ans[x][1])
+if res:
+    for i in range(len(res)-1):
+        print(res[i],end=',')
+    print(res[-1])
+else:
+    print(-1)
